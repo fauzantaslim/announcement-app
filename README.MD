@@ -244,8 +244,8 @@ Ensure all the following containers are running:
 | Service | URL | Credentials |
 |---------|-----|-------------|
 | **Website** | http://pengumuman.test | - |
-| **Admin Login** | http://pengumuman.test/login | Email: `admin@example.com`<br>Password: `password` |
-| **phpMyAdmin** | http://localhost:8080 | Server: `db_pengumuman`<br>User: `pengumuman_user`<br>Pass: `pengumuman_pass` |
+| **Admin Login** | http://pengumuman.test/login | Email: `admin@example.com`<br>Password: `password123` |
+| **phpMyAdmin** | http://localhost:8080 | Server: `pengumuman_db`<br>User: `user_pengumuman`<br>Pass: `user123` |
 
 ## ✨ Application Features
 
@@ -279,7 +279,7 @@ Content-Type: application/json
 
 {
   "email": "admin@example.com",
-  "password": "password"
+  "password": "password123"
 }
 ```
 
