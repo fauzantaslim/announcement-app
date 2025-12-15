@@ -1,20 +1,20 @@
 # Digital Announcement System
 
-Sistem pengumuman digital berbasis web dengan menggunakan Docker, Laravel (API), Next.js (Frontend), MySQL (Database), Nginx (Gateway & Asset Server).
+A web-based digital announcement system using Docker, Laravel (API), Next.js (Frontend), MySQL (Database), and Nginx (Gateway & Asset Server).
 
-## 📋 Daftar Isi
+## 📋 Table of Contents
 
-- [Arsitektur Sistem](#arsitektur-sistem)
-- [Teknologi Stack](#teknologi-stack)
-- [Struktur Project](#struktur-project)
+- [System Architecture](#system-architecture)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
 - [Prerequisites](#prerequisites)
-- [Instalasi & Setup](#instalasi--setup)
-- [Cara Menjalankan](#cara-menjalankan)
-- [Fitur Aplikasi](#fitur-aplikasi)
+- [Installation & Setup](#installation--setup)
+- [How to Run](#how-to-run)
+- [Application Features](#application-features)
 - [API Documentation](#api-documentation)
 - [Troubleshooting](#troubleshooting)
 
-## 🏗️ Arsitektur Sistem
+## 🏗️ System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -48,15 +48,15 @@ Sistem pengumuman digital berbasis web dengan menggunakan Docker, Laravel (API),
               └──────────┘
 ```
 
-**Alur Kerja:**
-1. **User** → Akses via **Gateway** (pengumuman.test)
-2. **Gateway** → Route ke **UI** (page) atau **API** (endpoint)
-3. **UI** ←→ **API** → Komunikasi untuk CRUD data
-4. **API** → **Database** → Simpan/ambil data announcements
-5. **API** → **Assets** → Upload gambar announcements
-6. **UI** → **Assets** → Load gambar untuk ditampilkan
+**Workflow:**
+1. **User** → Access via **Gateway** (pengumuman.test)
+2. **Gateway** → Route to **UI** (pages) or **API** (endpoints)
+3. **UI** ←→ **API** → Communication for CRUD operations
+4. **API** → **Database** → Store/retrieve announcements data
+5. **API** → **Assets** → Upload announcement images
+6. **UI** → **Assets** → Load images for display
 
-## 🛠️ Teknologi Stack
+## 🛠️ Technology Stack
 
 ### Backend (API)
 - **Laravel 11** - PHP Framework
@@ -76,7 +76,7 @@ Sistem pengumuman digital berbasis web dengan menggunakan Docker, Laravel (API),
 - **Nginx** - Reverse Proxy & Static File Server
 - **phpMyAdmin** - Database Management
 
-## 📁 Struktur Project
+## 📁 Project Structure
 
 ```
 tgs-p13/
@@ -107,16 +107,16 @@ tgs-p13/
 
 ## 📦 Prerequisites
 
-- **Docker Desktop** (sudah terinstall dan running)
-- **Git** (untuk clone repository)
-- Port yang diperlukan:
+- **Docker Desktop** (installed and running)
+- **Git** (to clone repository)
+- Required ports:
   - `80` (Gateway)
   - `3000` (UI - internal)
   - `9000` (API - internal)
   - `3306` (MySQL - internal)
   - `8080` (phpMyAdmin)
 
-## ⚙️ Instalasi & Setup
+## ⚙️ Installation & Setup
 
 ### 1. Clone Repository
 
@@ -128,7 +128,7 @@ cd tgs-p13
 
 ### 2. Setup Hosts File
 
-Tambahkan domain lokal ke file hosts Windows:
+Add local domain to Windows hosts file:
 
 **File:** `C:\Windows\System32\drivers\etc\hosts`
 
@@ -137,21 +137,21 @@ Tambahkan domain lokal ke file hosts Windows:
 127.0.0.1 db.pengumuman.test
 ```
 
-### 3. Buat Docker Network
+### 3. Create Docker Network
 
-Semua services menggunakan **external network** `pengumuman-net`. Network ini harus dibuat terlebih dahulu sebelum menjalankan service apapun.
+All services use an **external network** `pengumuman-net`. This network must be created first before running any service.
 
 ```bash
 docker network create pengumuman-net
 ```
 
-**Penjelasan:**
-- Semua `docker-compose.yml` menggunakan `external: true` untuk network
-- Artinya network harus sudah ada sebelumnya (tidak dibuat otomatis)
-- Semua container akan terhubung dalam satu network yang sama
-- Memungkinkan komunikasi antar services menggunakan container name
+**Explanation:**
+- All `docker-compose.yml` files use `external: true` for network
+- This means the network must exist beforehand (not automatically created)
+- All containers will be connected in the same network
+- Enables communication between services using container names
 
-**Verifikasi network:**
+**Verify network:**
 ```bash
 docker network ls | findstr pengumuman-net
 ```
@@ -162,7 +162,7 @@ docker network ls | findstr pengumuman-net
 ```bash
 cd api-digital-announce-system/digital-announce-system
 cp .env.example .env
-# Edit .env sesuai kebutuhan
+# Edit .env as needed
 ```
 
 **Key environment variables:**
@@ -173,9 +173,9 @@ DB_USERNAME=user_pengumuman
 DB_PASSWORD=user123
 ```
 
-## 🚀 Cara Menjalankan
+## 🚀 How to Run
 
-### Urutan Start Services (PENTING!)
+### Service Start Order (IMPORTANT!)
 
 **1. Start Database**
 ```bash
@@ -191,7 +191,7 @@ docker-compose up -d --build
 
 **3. Install Dependencies & Migrate Database**
 ```bash
-# Masuk ke container
+# Enter container
 docker exec -it laravel_app bash
 
 # Generate key
@@ -225,13 +225,13 @@ cd ../../gateway
 docker-compose up -d
 ```
 
-### Verifikasi Semua Services Running
+### Verify All Services Running
 
 ```bash
 docker ps
 ```
 
-Pastikan semua container berikut running:
+Ensure all the following containers are running:
 - `nextjs_ui`
 - `laravel_app`
 - `db_pengumuman`
@@ -239,7 +239,7 @@ Pastikan semua container berikut running:
 - `gateway_nginx`
 - `assets_nginx`
 
-## 🌐 Akses Aplikasi
+## 🌐 Application Access
 
 | Service | URL | Credentials |
 |---------|-----|-------------|
@@ -247,24 +247,24 @@ Pastikan semua container berikut running:
 | **Admin Login** | http://pengumuman.test/login | Email: `admin@example.com`<br>Password: `password` |
 | **phpMyAdmin** | http://localhost:8080 | Server: `db_pengumuman`<br>User: `pengumuman_user`<br>Pass: `pengumuman_pass` |
 
-## ✨ Fitur Aplikasi
+## ✨ Application Features
 
 ### Public Features
-- ✅ Lihat daftar pengumuman (dengan pagination)
-- ✅ Baca detail pengumuman
-- ✅ Search pengumuman
-- ✅ Filter berdasarkan status aktif
+- ✅ View announcement list (with pagination)
+- ✅ Read announcement details
+- ✅ Search announcements
+- ✅ Filter by active status
 - ✅ Responsive design (mobile-friendly)
 
 ### Admin Features
-- ✅ Login/Logout dengan authentication
-- ✅ Dashboard statistik
+- ✅ Login/Logout with authentication
+- ✅ Dashboard statistics
 - ✅ CRUD Announcements
-  - Create dengan rich text editor
-  - Upload gambar
+  - Create with rich text editor
+  - Upload images
   - Set publish date
-  - Toggle status aktif/inaktif
-- ✅ Preview gambar saat edit
+  - Toggle active/inactive status
+- ✅ Image preview during edit
 - ✅ Search & pagination
 - ✅ Real-time validation
 
@@ -338,15 +338,15 @@ Authorization: Bearer {token}
 
 ## 🔧 Development Workflow
 
-### Install Dependency Baru (UI)
+### Install New Dependencies (UI)
 
 ```bash
-# Jangan install di host Windows!
-# Install HANYA di container:
+# Do NOT install on Windows host!
+# Install ONLY in container:
 docker exec -it nextjs_ui npm install <package-name>
 ```
 
-### Lihat Logs
+### View Logs
 
 ```bash
 # UI logs
@@ -365,7 +365,7 @@ docker logs db_pengumuman -f
 # Restart specific service
 docker-compose restart
 
-# Rebuild container (jika ada perubahan Dockerfile)
+# Rebuild container (if Dockerfile changes)
 docker-compose up -d --build
 ```
 
@@ -373,68 +373,68 @@ docker-compose up -d --build
 
 ### Error: Network pengumuman-net not found
 
-Jika muncul error saat `docker-compose up`:
+If this error appears when running `docker-compose up`:
 ```
 ERROR: Network pengumuman-net declared as external, but could not be found
 ```
 
-**Solusi:**
+**Solution:**
 ```bash
-# Buat network terlebih dahulu
+# Create network first
 docker network create pengumuman-net
 
-# Lalu jalankan ulang
+# Then run again
 docker-compose up -d
 ```
 
-### Container tidak bisa start
+### Container fails to start
 
 ```bash
 # Check logs
 docker logs <container-name>
 
-# Remove dan rebuild
+# Remove and rebuild
 docker-compose down
 docker-compose up -d --build
 ```
 
-### Port sudah digunakan
+### Port already in use
 
 ```bash
 # Check port usage
 netstat -ano | findstr :80
 netstat -ano | findstr :3306
 
-# Kill process atau ganti port di docker-compose.yml
+# Kill process or change port in docker-compose.yml
 ```
 
 ### Database connection error
 
-1. Pastikan database service sudah running
-2. Check environment variables di `.env`
-3. Pastikan container terhubung ke network yang sama
+1. Ensure database service is running
+2. Check environment variables in `.env`
+3. Ensure containers are connected to the same network
 
 ```bash
 docker network inspect pengumuman-net
 ```
 
-### Hot reload tidak bekerja (UI)
+### Hot reload not working (UI)
 
-Sudah dikonfigurasi dengan:
+Already configured with:
 - `WATCHPACK_POLLING=true`
 - `CHOKIDAR_USEPOLLING=true`
 - Webpack polling mode
 
-Jika masih tidak bekerja:
+If still not working:
 ```bash
 docker-compose restart
 ```
 
 ## 📝 Notes
 
-- **Node modules:** Disimpan di Docker volume, tidak perlu ada di host
-- **Gambar:** Disimpan di `api-digital-announce-system/digital-announce-system/storage/app/public/announcements/`
-- **Database:** Data persistent di Docker volume `pengumuman_db_data`
+- **Node modules:** Stored in Docker volume, no need on host
+- **Images:** Stored in `api-digital-announce-system/digital-announce-system/storage/app/public/announcements/`
+- **Database:** Persistent data in Docker volume `pengumuman_db_data`
 
 ---
 
