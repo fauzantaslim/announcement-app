@@ -233,11 +233,12 @@ docker ps
 
 Ensure all the following containers are running:
 - `nextjs_ui`
-- `laravel_app`
-- `db_pengumuman`
+- `nginx_api`
+- `php_fpm_api`
+- `mysql_pengumuman`
 - `phpmyadmin_pengumuman`
-- `gateway_nginx`
-- `assets_nginx`
+- `nginx_gateway`
+- `assets_server`
 
 ## 🌐 Application Access
 
