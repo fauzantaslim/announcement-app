@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  gateway:
+    image: nginx:alpine
+    container_name: nginx_gateway
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/certs:/etc/nginx/certs
+    networks:
+      - pengumuman-net
+
+networks:
+  pengumuman-net:
+    external: true

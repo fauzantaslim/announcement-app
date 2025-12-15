@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_pengumuman
+    environment:
+      MYSQL_ROOT_PASSWORD: psswrd123
+      MYSQL_DATABASE: pengumuman_db
+      MYSQL_USER: user_pengumuman
+      MYSQL_PASSWORD: user123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - pengumuman-net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_pengumuman
+    expose:
+      - "80"
+    environment:
+      PMA_HOST: mysql_pengumuman
+    networks:
+      - pengumuman-net
+
+volumes:
+  mysql_data:
+
+networks:
+  pengumuman-net:
+    external: true
