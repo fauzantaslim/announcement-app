@@ -214,9 +214,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="prose-content text-slate-600 mb-4">
-                  <p>{truncateText(stripHtml(announcement.content), 200)}</p>
-                </div>
+
 
                 <Link
                   href={`/announcements/${announcement.id}`}

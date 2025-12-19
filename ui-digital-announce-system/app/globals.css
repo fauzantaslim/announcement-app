@@ -103,36 +103,152 @@ body {
   line-height: 1.8;
 }
 
+/* Headings */
+.prose-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  color: var(--foreground);
+}
+
+.prose-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.875rem;
+  margin-top: 1.25rem;
+  color: var(--foreground);
+}
+
 .prose-content h3 {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
+  margin-top: 1rem;
   color: var(--foreground);
 }
 
+.prose-content h4,
+.prose-content h5,
+.prose-content h6 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  margin-top: 0.75rem;
+  color: var(--foreground);
+}
+
+/* Paragraphs */
 .prose-content p {
   margin-bottom: 0.75rem;
   color: var(--foreground);
   opacity: 0.9;
 }
 
+/* Lists */
 .prose-content ul {
   list-style-type: disc;
   margin-left: 1.5rem;
   margin-bottom: 0.75rem;
+  padding-left: 0.5rem;
+}
+
+.prose-content ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  padding-left: 0.5rem;
 }
 
 .prose-content li {
   margin-bottom: 0.25rem;
+  color: var(--foreground);
+  opacity: 0.9;
 }
 
+.prose-content li p {
+  margin-bottom: 0.25rem;
+}
+
+/* Text Formatting */
 .prose-content strong {
   font-weight: 600;
+  color: var(--foreground);
 }
 
 .prose-content em {
   font-style: italic;
   opacity: 0.8;
+}
+
+.prose-content u {
+  text-decoration: underline;
+}
+
+.prose-content s {
+  text-decoration: line-through;
+}
+
+/* Links */
+.prose-content a {
+  color: var(--primary);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.prose-content a:hover {
+  color: var(--primary-dark);
+}
+
+/* Blockquotes */
+.prose-content blockquote {
+  border-left: 4px solid var(--primary);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* Code */
+.prose-content code {
+  background-color: #f1f5f9;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.875em;
+}
+
+.prose-content pre {
+  background-color: #f1f5f9;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.prose-content pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Horizontal Rule */
+.prose-content hr {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 1.5rem 0;
+}
+
+/* Images */
+.prose-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* Hide Quill UI elements in display mode */
+.prose-content .ql-ui {
+  display: none;
 }
 
 /* Quill Editor Custom Styles */
