@@ -18,7 +18,17 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchInput, setSearchInput] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Debounce search input
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setSearchQuery(searchInput);
+    }, 500); // 500ms debounce delay
+
+    return () => clearTimeout(timeoutId);
+  }, [searchInput]);
 
   useEffect(() => {
     loadAnnouncements();
@@ -93,9 +103,9 @@ export default function Home() {
             <input
               type="text"
               placeholder="Search announcements..."
-              value={searchQuery}
+              value={searchInput}
               onChange={(e) => {
-                setSearchQuery(e.target.value);
+                setSearchInput(e.target.value);
                 setCurrentPage(1);
               }}
               className="w-full px-6 py-4 rounded-2xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-lg transition-all duration-300 placeholder:text-slate-400"

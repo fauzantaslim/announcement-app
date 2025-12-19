@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import RichTextEditor from '@/components/RichTextEditor';
 import { fetchAnnouncements, createAnnouncement, updateAnnouncement, deleteAnnouncement } from '@/lib/api';
@@ -19,6 +19,7 @@ export default function AdminAnnouncements() {
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchInput, setSearchInput] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [pagination, setPagination] = useState({
     current_page: 1,
@@ -45,6 +46,15 @@ export default function AdminAnnouncements() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  // Debounce search input
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setSearchQuery(searchInput);
+    }, 500); // 500ms debounce delay
+
+    return () => clearTimeout(timeoutId);
+  }, [searchInput]);
 
   useEffect(() => {
     const token = localStorage.getItem('auth_token');
@@ -257,9 +267,9 @@ export default function AdminAnnouncements() {
         <input
           type="text"
           placeholder="Search announcements..."
-          value={searchQuery}
+          value={searchInput}
           onChange={(e) => {
-            setSearchQuery(e.target.value);
+            setSearchInput(e.target.value);
             setCurrentPage(1);
           }}
           className="w-full px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900"
