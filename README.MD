@@ -245,8 +245,9 @@ Ensure all the following containers are running:
 | Service | URL | Credentials |
 |---------|-----|-------------|
 | **Website** | http://pengumuman.test | - |
+| **Api** | http://pengumuman.test/api | - |
 | **Admin Login** | http://pengumuman.test/login | Email: `admin@example.com`<br>Password: `password123` |
-| **phpMyAdmin** | http://localhost:8080 | Server: `pengumuman_db`<br>User: `user_pengumuman`<br>Pass: `user123` |
+| **phpMyAdmin** | http://db.pengumuman.test | Server: `pengumuman_db`<br>User: `user_pengumuman`<br>Pass: `user123` |
 
 ## ✨ Application Features
 
@@ -440,3 +441,4 @@ docker-compose restart
 ---
 
 Made with ❤️
+
