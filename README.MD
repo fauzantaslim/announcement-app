@@ -246,6 +246,7 @@ Ensure all the following containers are running:
 |---------|-----|-------------|
 | **Website** | http://pengumuman.test | - |
 | **Api** | http://pengumuman.test/api | - |
+| **Assets** | http://pengumuman.test/storage | - |
 | **Admin Login** | http://pengumuman.test/login | Email: `admin@example.com`<br>Password: `password123` |
 | **phpMyAdmin** | http://db.pengumuman.test | Server: `pengumuman_db`<br>User: `user_pengumuman`<br>Pass: `user123` |
 
@@ -441,4 +442,5 @@ docker-compose restart
 ---
 
 Made with ❤️
+
 
